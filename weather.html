@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atmosphere - Modern Weather Experience</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+    <!-- Animated background aura blobs -->
+    <div class="aura-container">
+        <div class="aura aura-1"></div>
+        <div class="aura aura-2"></div>
+        <div class="aura aura-3"></div>
+    </div>
+
+    <div class="container">
+        <h1 class="heading">Atmosphere</h1>
+        
+        <div class="card">
+            <!-- Search bar -->
+            <div class="search">
+                <input type="text" placeholder="Enter city name..." id="inp" autocomplete="off">
+                <button id="btn" aria-label="Search City">
+                    <img src="images/search.png" alt="Search">
+                </button>
+            </div>
+
+            <!-- Recent/Favorite searches -->
+            <div class="recent-searches" id="recentSearches">
+                <!-- Tags will be injected here by JS -->
+            </div>
+
+            <!-- Error message -->
+            <div class="error" id="errorBox">
+                <p>Invalid city name. Please try again.</p>
+            </div>
+
+            <!-- Weather Details (hidden initially) -->
+            <div class="weather" id="weatherContent">
+                <!-- Main Info Card -->
+                <div class="main-info">
+                    <img src="images/rain.png" alt="Weather condition" class="weather-icon">
+                    <h1 class="temp">22°C</h1>
+                    <h2 class="city">New York</h2>
+                    <p class="description">Light Rain</p>
+                </div>
+
+                <!-- 2x2 Grid of weather stats -->
+                <div class="stats-grid">
+                    <!-- Humidity -->
+                    <div class="stat-card">
+                        <img src="images/humidity.png" alt="Humidity" class="stat-icon">
+                        <div class="stat-info">
+                            <p class="humidity stat-value">50%</p>
+                            <p class="stat-label">Humidity</p>
+                        </div>
+                    </div>
+
+                    <!-- Wind Speed -->
+                    <div class="stat-card">
+                        <img src="images/wind.png" alt="Wind speed" class="stat-icon">
+                        <div class="stat-info">
+                            <p class="wind stat-value">12 km/h</p>
+                            <p class="stat-label">Wind Speed</p>
+                        </div>
+                    </div>
+
+                    <!-- Feels Like -->
+                    <div class="stat-card">
+                        <!-- Thermometer SVG -->
+                        <svg class="stat-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"></path>
+                        </svg>
+                        <div class="stat-info">
+                            <p class="feels-like stat-value">20°C</p>
+                            <p class="stat-label">Feels Like</p>
+                        </div>
+                    </div>
+
+                    <!-- Visibility -->
+                    <div class="stat-card">
+                        <!-- Eye SVG -->
+                        <svg class="stat-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        <div class="stat-info">
+                            <p class="visibility stat-value">10 km</p>
+                            <p class="stat-label">Visibility</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sun Cycle Section -->
+                <div class="sun-cycle">
+                    <div class="sun-time">
+                        <svg class="sun-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+                        </svg>
+                        <div>
+                            <span class="sunrise">06:00 AM</span>
+                            <small>Sunrise</small>
+                        </div>
+                    </div>
+                    <div class="sun-divider"></div>
+                    <div class="sun-time">
+                        <svg class="sun-svg sunset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+                            <line x1="2" y1="20" x2="22" y2="20" stroke-width="3"></line>
+                        </svg>
+                        <div>
+                            <span class="sunset">06:00 PM</span>
+                            <small>Sunset</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5-Day Forecast -->
+                <div class="forecast-section">
+                    <h3 class="forecast-title">5-Day Forecast</h3>
+                    <div class="forecast-grid" id="forecastGrid">
+                        <!-- Daily forecast items injected here by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js?v=2"></script>
+</body>
+</html>
