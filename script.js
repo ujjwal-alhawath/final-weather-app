@@ -2,9 +2,21 @@ let apikey = "";
 const apiurl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
 
 async function loadApiKey() {
+    // Try localStorage first
+    const localKey = localStorage.getItem('OPENWEATHER_API_KEY');
+    if (localKey) {
+        apikey = localKey;
+        return;
+    }
+
     try {
-        const response = await fetch('.env');
-        if (!response.ok) throw new Error('Failed to load .env file');
+        let response = await fetch('.env');
+        if (!response.ok) {
+            // Fallback to 'env' (without dot) since Live Server/static hosts block dotfiles
+            response = await fetch('env');
+        }
+        if (!response.ok) throw new Error('Failed to load API key file (.env or env)');
+        
         const text = await response.text();
         const lines = text.split('\n');
         for (const line of lines) {
@@ -17,9 +29,10 @@ async function loadApiKey() {
             }
         }
     } catch (error) {
-        console.error("Could not load API key from .env file:", error);
+        console.error("Could not load API key:", error);
     }
 }
+
 
 // Weather glows mappings for background aura circles
 const weatherGlows = {
